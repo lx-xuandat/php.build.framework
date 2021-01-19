@@ -1,0 +1,9 @@
+{
+  "name": "luuxuandat/lxframework",
+  "autoload": {
+    "psr-4": {
+      "app\\": "./"
+    }
+  },
+  "require": {}
+}
