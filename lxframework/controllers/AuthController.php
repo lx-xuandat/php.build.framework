@@ -30,6 +30,6 @@ class AuthController extends Controller
             }
         }
 
-        return $this->render('register', ['model' => $model]);
+        return $this->render('auth/register', ['model' => $model]);
     }
 }
