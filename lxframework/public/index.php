@@ -7,8 +7,7 @@ use app\controllers\AuthController;
 use app\controllers\SiteControlller;
 use app\core\Application;
 
-$conf = include_once __CONFIG__ . '/app.php';
-$app = new Application($conf);
+$app = new Application();
 
 $app->router->get('/', [SiteControlller::class, 'home']);
 

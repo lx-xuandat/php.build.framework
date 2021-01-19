@@ -6,8 +6,6 @@ namespace app\core;
 
 class Application
 {
-
-    public static $config = [];
     public static $app;
 
     public Router $router;
@@ -19,9 +17,8 @@ class Application
     /**
      * Application constructor.
      */
-    public function __construct($config)
+    public function __construct()
     {
-        self::$config = $config;
         self::$app = $this;
 
         $this->request = new Request();
