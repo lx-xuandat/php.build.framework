@@ -8,3 +8,4 @@ define("__VIEWS__", __ROOT__ . '/views/');
 define("__LAYOUTS__", __ROOT__ . '/views/layouts/');
 define("__MODELS__", __ROOT__ . '/models');
 define("__CONTROLLERS__", __ROOT__ . '/controllers/');
+define("__MIGRATIONS__", __ROOT__ . '/migrations/');
