@@ -1,3 +1,10 @@
+<?php
+
+use app\core\Application;
+use app\core\Session;
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -47,6 +54,11 @@
     </div>
 </nav>
 <div class="container">
+    <?php if (Application::$app->session->getFlash(Session::KEY_SUCCESS) ): ?>
+        <div class="alert alert-success">
+            <?php echo Application::$app->session->getFlash(Session::KEY_SUCCESS) ?>
+        </div>
+    <?php endif; ?>
     {{@content}}
 </div>
 

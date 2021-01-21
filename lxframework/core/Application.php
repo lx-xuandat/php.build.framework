@@ -15,6 +15,8 @@ class Application
     public ?Controller $controleler;
 
     public Database $db;
+
+    public Session $session;
     /**
      * Application constructor.
      */
@@ -29,6 +31,7 @@ class Application
 
         $this->db = new Database($config['db']);
 
+        $this->session = new Session();
     }
 
     public function run()

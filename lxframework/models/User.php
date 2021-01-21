@@ -19,7 +19,7 @@ class User extends DbModel
     public $confirmPassword;
     public $status = self::STATUS_INACTIVE;
 
-    public function register()
+    public function save()
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         $this->status = self::STATUS_INACTIVE;
