@@ -10,14 +10,7 @@ use app\core\Application;
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
-$config = [
-    'userClass' => \app\models\User::class,
-    'db' => [
-        'dsn' => $_ENV['DB_DSN'],
-        'user' => $_ENV['DB_USER'],
-        'password' => $_ENV['DB_PASSWORD'],
-    ],
-];
+$config = include_once __BOOT__ . 'config.php';
 $app = new Application($config);
 
 $app->router->get('/', [SiteControlller::class, 'home']);

@@ -11,13 +11,8 @@ include __DIR__ . '/boot/constant.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$config = [
-    'db' => [
-        'dsn' => $_ENV['DB_DSN'],
-        'user' => $_ENV['DB_USER'],
-        'password' => $_ENV['DB_PASSWORD'],
-    ],
-];
+$config = include_once __BOOT__ . 'config.php';
+
 $app = new Application($config);
 
 $app->db->applyMigrations();

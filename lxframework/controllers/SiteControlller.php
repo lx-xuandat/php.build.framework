@@ -7,6 +7,7 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\models\Contact;
 
 class SiteControlller extends Controller
 {
@@ -23,13 +24,21 @@ class SiteControlller extends Controller
 
     public function contact()
     {
-        return $this->render('contact');
+        $contact = new Contact();
+        return $this->render('contact', ['model' => $contact]);
     }
 
     public function handleContact(Request $request)
     {
-        $data = $request->getBody();
-        var_dump($data);
-        return 'handling submitted data';
+        $contact = new Contact();
+        $contact->loadData($request->getBody());
+
+        if($contact->validate() && $contact->send()){
+            Application::$app->session->setFlash('success', 'Thanhk for contact');
+            Application::$app->response->redirect('/');
+            exit;
+        }
+
+        return $this->render('contact', ['model' => $contact]);
     }
 }

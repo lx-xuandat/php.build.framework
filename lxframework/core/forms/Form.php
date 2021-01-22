@@ -19,8 +19,8 @@ class Form
         echo '</form>';
     }
 
-    public function field(Model $model, $attribute, $type = Field::TYPE_TEXT)
+    public function field(Model $model, $attribute)
     {
-        echo new Field($model, $attribute, $type);
+        return new InputField($model, $attribute);
     }
 }

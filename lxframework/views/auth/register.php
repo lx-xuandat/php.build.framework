@@ -1,4 +1,4 @@
-<?php use app\core\forms\Field;
+<?php use app\core\forms\InputField;
 use app\core\forms\Form;
 
 $model = $this->model;
@@ -9,23 +9,23 @@ $model = $this->model;
 
 <div class="form-row">
     <div class="form-group col">
-        <?php $form->field($model, 'firstname') ?>
+        <?= $form->field($model, 'firstname') ?>
     </div>
     <div class="form-group col">
-        <?php $form->field($model, 'lastname') ?>
+        <?= $form->field($model, 'lastname') ?>
     </div>
 </div>
 
 <div class="form-group">
-    <?php $form->field($model, 'email', Field::TYPE_EMAIL) ?>
+    <?= $form->field($model, 'email')->email() ?>
 </div>
 
 <div class="form-group">
-    <?php $form->field($model, 'password', Field::TYPE_PASSWORD) ?>
+    <?= $form->field($model, 'password')->password() ?>
 </div>
 
 <div class="form-group">
-    <?php $form->field($model, 'confirmPassword', Field::TYPE_PASSWORD) ?>
+    <?= $form->field($model, 'confirmPassword')->password() ?>
 </div>
 
 <button type="submit" class="btn btn-primary">Register</button>

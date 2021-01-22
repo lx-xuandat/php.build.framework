@@ -42,12 +42,14 @@ class Request
         if ($this->isPost()) {
             foreach ($_POST as $key => $value) {
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                unset($_POST[$key]);
             }
         }
 
         if ($this->isGet()) {
             foreach ($_GET as $key => $value) {
                 $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                unset($_GET[$key]);
             }
         }
 
