@@ -12,7 +12,7 @@ class Application
     public Request $request;
     public Response $response;
 
-    public ?Controller $controleler;
+    public ?Controller $controleler = null;
 
     public Database $db;
 
@@ -43,7 +43,7 @@ class Application
         if ($primaryValue) {
             $primaryKey = $this->userClass::primaryKey();
             $this->user = $this->userClass::findOne([$primaryKey => $primaryValue]);
-        }else{
+        } else {
             $this->user = null;
         }
     }
@@ -55,7 +55,13 @@ class Application
 
     public function run()
     {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch (\Exception $e) {
+            echo $this->router->renderView('_error', [
+                'exception' => $e
+            ]);
+        }
     }
 
     public function login(DbModel $user)
