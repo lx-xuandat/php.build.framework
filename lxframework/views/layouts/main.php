@@ -39,14 +39,25 @@ use app\core\Session;
             </li>
         </ul>
 
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="./login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./register">Register</a>
-            </li>
-        </ul>
+        <?php if (Application::isGuest()): ?>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./register">Register</a>
+                </li>
+            </ul>
+        <?php else: ?>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./logout">
+                        Wellcome <?php echo Application::$app->user->getDisplayName() ?>
+                        (Logout)
+                    </a>
+                </li>
+            </ul>
+        <?php endif; ?>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -54,7 +65,7 @@ use app\core\Session;
     </div>
 </nav>
 <div class="container">
-    <?php if (Application::$app->session->getFlash('success') ): ?>
+    <?php if (Application::$app->session->getFlash('success')): ?>
         <div class="alert alert-success">
             <?php echo Application::$app->session->getFlash('success') ?>
         </div>
