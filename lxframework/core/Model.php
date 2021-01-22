@@ -60,8 +60,9 @@ abstract class Model
                     $this->addError($propertyOfInstance, self::RULE_MAX, ['max' => $rules[1]]);
                 }
 
-                if ($rule === self::RULE_MATCH && $valueOfInstance != $this->{$rules[1]}) {
-                    $this->addError($propertyOfInstance, self::RULE_MATCH, ['match' => $rules[1]]);
+                if ($rule === self::RULE_MATCH && $valueOfInstance != $this->{$rules[self::RULE_MATCH]}) {
+                    $rules[self::RULE_MATCH] = $this->getLabel($rules[self::RULE_MATCH]);
+                    $this->addError($propertyOfInstance, self::RULE_MATCH, $rules);
                 }
 
                 if ($rule === self::RULE_UNIQUE) {
@@ -73,7 +74,7 @@ abstract class Model
                     $statement->execute();
                     $record = $statement->fetchObject();
                     if ($record) {
-                        $this->addError($propertyOfInstance, self::RULE_UNIQUE, ['field' => $propertyOfInstance]);
+                        $this->addError($propertyOfInstance, self::RULE_UNIQUE, ['field' => $this->getLabel($propertyOfInstance)]);
                     }
                 }
             }
@@ -83,6 +84,13 @@ abstract class Model
     }
 
     abstract public function rules();
+
+    abstract public function labels(): array;
+
+    public function getLabel($attribute)
+    {
+        return $this->labels()[$attribute] ?? $attribute;
+    }
 
     public function addError(string $attribute, $rule, $params = [])
     {
