@@ -5,7 +5,7 @@ $model = $this->model;
 ?>
 
 <h2>Register</h2>
-<?php $form = Form::begin('', 'post'); ?>
+<?php $form = Form::begin('/register', 'post'); ?>
 
 <div class="form-row">
     <div class="form-group col">

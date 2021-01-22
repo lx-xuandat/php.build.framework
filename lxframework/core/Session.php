@@ -6,33 +6,23 @@ namespace app\core;
 
 class Session
 {
-    public const TYPE_FLASH = 'flash_messages';
-    public const TYPE_CART = 'cart';
-
-    public const KEY_SUCCESS = 'success';
-
+    const TYPE_FLASH = 'flash_messages';
+    const TYPE_CART = 'cart';
 
     /**
      * Session constructor.
      */
     public function __construct()
     {
-        // session_save_path("/tmp");
-
         session_start();
 
         $flashMessages = $_SESSION[self::TYPE_FLASH] ?? [];
         foreach ($flashMessages as $key => &$flashMessage) {
             // mark to be removed
-            $flashMessages['removed'] = true;
+            $flashMessage['removed'] = true;
         }
 
         $_SESSION[self::TYPE_FLASH] = $flashMessages;
-
-        echo '<pre>';
-        var_dump($_SESSION[self::TYPE_FLASH]);
-        echo '</pre>';
-
     }
 
     public function setFlash($key, $messages)
@@ -45,11 +35,19 @@ class Session
 
     public function getFlash($key)
     {
-//        return $_SESSION[self::TYPE_FLASH][$key];
+        return $_SESSION[self::TYPE_FLASH][$key]['value'] ?? false;
     }
 
     public function __destruct()
     {
-        // TODO: Implement __destruct() method.
+        $flashMessages = $_SESSION[self::TYPE_FLASH] ?? [];
+        foreach ($flashMessages as $key => &$flashMessage) {
+            // mark to be removed
+            if ($flashMessage['removed']) {
+                unset($flashMessages[$key]);
+            }
+        }
+
+        $_SESSION[self::TYPE_FLASH] = $flashMessages;
     }
 }

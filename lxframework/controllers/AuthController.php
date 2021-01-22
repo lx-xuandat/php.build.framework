@@ -28,8 +28,9 @@ class AuthController extends Controller
         if ($request->isPost()) {
             $model->loadData($request->getBody());
             if ($model->validate() && $model->save()) {
-                Application::$app->session->setFlash(Session::KEY_SUCCESS, 'Thanhk for register');
+                Application::$app->session->setFlash('success', 'Thanhk for register');
                 Application::$app->response->redirect('/');
+                exit;
             }
         }
 

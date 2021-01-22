@@ -3,9 +3,6 @@
 
 namespace app\core;
 
-
-use MongoDB\Driver\Exception\Exception;
-
 class Database
 {
 

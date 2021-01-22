@@ -29,22 +29,22 @@ use app\core\Session;
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
+                <a class="nav-link" href="./about">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/contact">Contact</a>
+                <a class="nav-link" href="./contact">Contact</a>
             </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
+                <a class="nav-link" href="./login">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/register">Register</a>
+                <a class="nav-link" href="./register">Register</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -54,9 +54,9 @@ use app\core\Session;
     </div>
 </nav>
 <div class="container">
-    <?php if (Application::$app->session->getFlash(Session::KEY_SUCCESS) ): ?>
+    <?php if (Application::$app->session->getFlash('success') ): ?>
         <div class="alert alert-success">
-            <?php echo Application::$app->session->getFlash(Session::KEY_SUCCESS) ?>
+            <?php echo Application::$app->session->getFlash('success') ?>
         </div>
     <?php endif; ?>
     {{@content}}

@@ -23,7 +23,7 @@ class User extends DbModel
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         $this->status = self::STATUS_INACTIVE;
-        return $this->save();
+        return parent::save();
     }
 
     /**
